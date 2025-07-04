@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <img id="previewImage" src="" alt="Your Photo" style="max-width: 150px; display: none; margin-top: 10px;" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CV Form</title>
@@ -52,6 +51,8 @@
       max-height: 100px;
       object-fit: cover;
       border-radius: 10px;
+      margin-top: 10px;
+      display: none;
     }
 
     .info-section {
@@ -102,49 +103,49 @@
     .btn:hover {
       transform: scale(1.05);
     }
+
     @media (max-width: 768px) {
-  body {
-    padding: 20px;
-  }
+      body {
+        padding: 20px;
+      }
 
-  .container {
-    flex-direction: column;
-  }
+      .container {
+        flex-direction: column;
+      }
 
-  .left, .right {
-    width: 100%;
-    padding: 20px 10px;
-  }
+      .left, .right {
+        width: 100%;
+        padding: 20px 10px;
+      }
 
-  h1 {
-    font-size: 1.8rem;
-  }
+      h1 {
+        font-size: 1.8rem;
+      }
 
-  h2 {
-    font-size: 1.2rem;
-  }
+      h2 {
+        font-size: 1.2rem;
+      }
 
-  .btn, .download-button button, .cta-button {
-    font-size: 1rem;
-    padding: 12px 20px;
-  }
+      .btn, .download-button button, .cta-button {
+        font-size: 1rem;
+        padding: 12px 20px;
+      }
 
-  .photo-frame img {
-    max-height: 80px;
-  }
-}
+      .photo-frame img {
+        max-height: 80px;
+      }
+    }
 
-@media (max-width: 480px) {
-  h1 {
-    font-size: 1.5rem;
-  }
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.5rem;
+      }
 
-  .btn, .cta-button {
-    padding: 10px 15px;
-    font-size: 0.9rem;
-  }
-}
-
+      .btn, .cta-button {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -154,7 +155,8 @@
       <div class="top-row">
         <div class="photo-frame">
           <label><i class="fas fa-camera"></i> Upload Photo</label>
-          <input type="file" accept="image/*" name="photo" />
+          <input type="file" accept="image/*" name="photo" id="photoInput" />
+          <img id="previewImage" alt="Preview" />
         </div>
 
         <div class="info-section">
@@ -220,10 +222,7 @@
     </form>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script>
-    AOS.init({ duration: 1000, once: true });
-
     function goToPreview() {
       const fields = [
         "name", "job", "summary", "skills", "experience", "education", "contact",
@@ -235,6 +234,23 @@
       });
       window.location.href = "3.html";
     }
+
+    // كود الصورة
+    const photoInput = document.getElementById("photoInput");
+    const previewImage = document.getElementById("previewImage");
+
+    photoInput.addEventListener("change", function () {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function () {
+          previewImage.src = reader.result;
+          previewImage.style.display = "block";
+          localStorage.setItem("photo", reader.result); // حفظ الصورة في localStorage
+        };
+        reader.readAsDataURL(file);
+      }
+    });
   </script>
 </body>
 </html>
