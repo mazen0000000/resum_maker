@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume Preview</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f4f4f4;
+      padding: 40px;
+      color: #333;
+    }
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      background: #fff;
+      display: flex;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    .left {
+      width: 35%;
+      background: #3b3b3a;
+      color: white;
+      padding: 30px;
+    }
+    .left .photo {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      object-fit: cover;
+      margin-bottom: 20px;
+    }
+    .section-title {
+      margin-top: 30px;
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-bottom: 2px solid #ffea00;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .left p, .left li {
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+    .right {
+      width: 65%;
+      padding: 30px;
+    }
+    .name-title {
+      text-align: left;
+      border-bottom: 2px solid #002147;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+    .name-title h1 {
+      margin: 0;
+      font-size: 2rem;
+      color: #002147;
+    }
+    .name-title h2 {
+      margin: 0;
+      font-size: 1.1rem;
+      color: #555;
+    }
+    .right .section {
+      margin-bottom: 20px;
+    }
+    .right .section h3 {
+      color: #002147;
+      font-size: 1.1rem;
+      border-left: 4px solid #ffea00;
+      padding-left: 10px;
+      margin-bottom: 5px;
+    }
+    .right .section p {
+      margin: 0;
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+    .download-button {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .download-button button {
+      background-color: #ffea00;
+      color: black;
+      font-weight: bold;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: transform 0.3s ease;
+    }
+    .download-button button:hover {
+      transform: scale(1.05);
+    }
+    @media (max-width: 768px) {
+  body {
+    padding: 20px;
+  }
+
+  .container {
+    flex-direction: column;
+  }
+
+  .left, .right {
+    width: 100%;
+    padding: 20px 10px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  .btn, .download-button button, .cta-button {
+    font-size: 1rem;
+    padding: 12px 20px;
+  }
+
+  .photo-frame img {
+    max-height: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .btn, .cta-button {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <div class="container" id="cv-content">
+    <div class="left">
+      <img id="profile-img" class="photo" alt="Profile Photo" />
+      <div class="section-title"><i class="fas fa-id-card"></i> About</div>
+      <p id="birthdate"></p>
+      <p id="nationality"></p>
+      <p id="idnumber"></p>
+      <p id="address"></p>
+      <p id="city"></p>
+      <p id="country"></p>
+      <p id="zip"></p>
+
+      <div class="section-title"><i class="fas fa-cogs"></i> Skills</div>
+      <p id="skills"></p>
+
+      <div class="section-title"><i class="fas fa-language"></i> Languages</div>
+      <p>English, Arabic</p>
+
+      <div class="section-title"><i class="fas fa-laptop-code"></i> Software</div>
+      <p>VS Code, Photoshop, Git</p>
+    </div>
+    <div class="right">
+      <div class="name-title">
+        <h1 id="name">John Doe</h1>
+        <h2 id="job">Web Developer</h2>
+      </div>
+
+      <div class="section">
+        <h3><i class="fas fa-user"></i> Profile</h3>
+        <p id="summary"></p>
+      </div>
+
+      <div class="section">
+        <h3><i class="fas fa-briefcase"></i> Work Experience</h3>
+        <p id="experience"></p>
+      </div>
+
+      <div class="section">
+        <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+        <p id="education"></p>
+      </div>
+
+      <div class="section">
+        <h3><i class="fas fa-phone"></i> Contact Info</h3>
+        <p id="contact"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- زر التحميل -->
+  <div class="download-button">
+    <button onclick="downloadCV()">
+      <i class="fas fa-download"></i> Download as PDF
+    </button>
+  </div>
+
+  <!-- مكتبة html2pdf -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+  <script>
+    // تحميل البيانات من localStorage
+    const fields = [
+      "name", "job", "summary", "skills", "experience", "education",
+      "contact", "address", "city", "country", "zip",
+      "idnumber", "nationality", "birthdate"
+    ];
+
+    fields.forEach(id => {
+      const value = localStorage.getItem(id);
+      if (value) {
+        const el = document.getElementById(id);
+        if (el) el.innerText = value;
+      }
+    });
+
+    // تحميل الصورة
+    const photoData = localStorage.getItem("photoBase64") || localStorage.getItem("photo");
+    if (photoData) {
+      const img = document.getElementById("profile-img");
+      img.src = photoData;
+      img.style.display = "block";
+    }
+
+    // تحميل PDF بجودة عالية
+function downloadCV() {
+  const element = document.getElementById("cv-content");
+  html2pdf().set({
+    margin: 0,
+    filename: 'My-Resume.pdf',
+    image: { type: 'jpeg', quality: 1 },
+    html2canvas: { scale: 4, useCORS: true, scrollY: 0 },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }  // <=== هنا السحر
+  }).from(element).save();
+}
+
+  </script>
+</body>
+</html>

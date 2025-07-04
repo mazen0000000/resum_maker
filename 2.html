@@ -1,0 +1,241 @@
+<!-- 2.html - Resume Form Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <img id="previewImage" src="" alt="Your Photo" style="max-width: 150px; display: none; margin-top: 10px;" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV Form</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    body {
+      background: linear-gradient(to right, #2e2927, #3b4454);
+      font-family: 'Poppins', sans-serif;
+      color: white;
+      padding: 40px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #ffea00;
+      font-size: 2.5rem;
+    }
+
+    .form-container {
+      max-width: 1100px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+    }
+
+    .top-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .photo-frame {
+      flex: 1 1 250px;
+      border: 3px solid #000000;
+      border-radius: 10px;
+      text-align: center;
+      padding: 20px;
+      height: fit-content;
+    }
+
+    .photo-frame img {
+      max-width: 100%;
+      max-height: 100px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .info-section {
+      flex: 2;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      margin-top: 8px;
+      font-size: 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      outline: none;
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .btn {
+      margin-top: 30px;
+      background: #ffea00;
+      color: #000;
+      padding: 15px;
+      width: 100%;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+    }
+    @media (max-width: 768px) {
+  body {
+    padding: 20px;
+  }
+
+  .container {
+    flex-direction: column;
+  }
+
+  .left, .right {
+    width: 100%;
+    padding: 20px 10px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  .btn, .download-button button, .cta-button {
+    font-size: 1rem;
+    padding: 12px 20px;
+  }
+
+  .photo-frame img {
+    max-height: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .btn, .cta-button {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <h1>Build Your CV</h1>
+  <div class="form-container">
+    <form>
+      <div class="top-row">
+        <div class="photo-frame">
+          <label><i class="fas fa-camera"></i> Upload Photo</label>
+          <input type="file" accept="image/*" name="photo" />
+        </div>
+
+        <div class="info-section">
+          <label><i class="fas fa-user"></i> Full Name
+            <input name="name" type="text" placeholder="e.g. John Doe" required />
+          </label>
+
+          <label><i class="fas fa-briefcase"></i> Job Title
+            <input name="job" type="text" placeholder="e.g. Web Developer" required />
+          </label>
+
+          <label><i class="fas fa-map-marker-alt"></i> Address
+            <input name="address" type="text" placeholder="Street Name, Building" />
+          </label>
+
+          <label><i class="fas fa-city"></i> City
+            <input name="city" type="text" placeholder="e.g. Cairo" />
+          </label>
+
+          <label><i class="fas fa-flag"></i> Country
+            <input name="country" type="text" placeholder="e.g. Egypt" />
+          </label>
+
+          <label><i class="fas fa-envelope"></i> ZIP Code
+            <input name="zip" type="text" placeholder="e.g. 12345" />
+          </label>
+
+          <label><i class="fas fa-id-card"></i> National ID Number
+            <input name="idnumber" type="text" placeholder="e.g. 298..." />
+          </label>
+
+          <label><i class="fas fa-passport"></i> Nationality
+            <input name="nationality" type="text" placeholder="e.g. Egyptian" />
+          </label>
+
+          <label><i class="fas fa-calendar-alt"></i> Birth Date
+            <input name="birthdate" type="date" />
+          </label>
+        </div>
+      </div>
+
+      <label><i class="fas fa-align-left"></i> Summary
+        <textarea name="summary" placeholder="A short professional summary..."></textarea>
+      </label>
+
+      <label><i class="fas fa-cogs"></i> Skills
+        <textarea name="skills" placeholder="e.g. HTML, CSS, JavaScript, React..."></textarea>
+      </label>
+
+      <label><i class="fas fa-building"></i> Experience
+        <textarea name="experience" placeholder="Company name, role, years..."></textarea>
+      </label>
+
+      <label><i class="fas fa-graduation-cap"></i> Education
+        <textarea name="education" placeholder="University name, degree, years..."></textarea>
+      </label>
+
+      <label><i class="fas fa-phone"></i> Contact Info
+        <input name="contact" type="text" placeholder="Email or phone number" required />
+      </label>
+
+      <button type="button" class="btn" onclick="goToPreview()">Continue</button>
+    </form>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true });
+
+    function goToPreview() {
+      const fields = [
+        "name", "job", "summary", "skills", "experience", "education", "contact",
+        "address", "city", "country", "zip", "idnumber", "nationality", "birthdate"
+      ];
+      fields.forEach(id => {
+        const value = document.querySelector(`[name=${id}]`)?.value || "";
+        localStorage.setItem(id, value);
+      });
+      window.location.href = "3.html";
+    }
+  </script>
+</body>
+</html>
