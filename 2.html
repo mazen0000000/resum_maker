@@ -156,6 +156,7 @@
         <div class="photo-frame">
           <label><i class="fas fa-camera"></i> Upload Photo</label>
           <input type="file" accept="image/*" name="photo" id="photoInput" />
+          <img id="previewImage" alt="Preview" style="max-width: 150px; display: none; margin-top: 10px;" />
           <img id="previewImage" alt="Preview" />
         </div>
 
@@ -236,21 +237,22 @@
     }
 
     // كود الصورة
-    const photoInput = document.getElementById("photoInput");
-    const previewImage = document.getElementById("previewImage");
+  const photoInput = document.getElementById("photoInput");
+  const previewImage = document.getElementById("previewImage");
 
-    photoInput.addEventListener("change", function () {
-      const file = this.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function () {
-          previewImage.src = reader.result;
-          previewImage.style.display = "block";
-          localStorage.setItem("photo", reader.result); // حفظ الصورة في localStorage
-        };
-        reader.readAsDataURL(file);
-      }
-    });
-  </script>
+  photoInput.addEventListener("change", function () {
+    const file = this.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function () {
+        previewImage.src = reader.result;
+        previewImage.style.display = "block";
+        localStorage.setItem("photo", reader.result); // اختياري
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+</script>
+
 </body>
 </html>
